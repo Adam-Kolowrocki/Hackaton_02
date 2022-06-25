@@ -3,8 +3,12 @@ import json
 
 def save(numbers_list):
     filename = input(f'Podaj nazwę kliku do zapiania książki, bez rozszerzenia -> ')
-    with open(f'{filename}.json', 'w') as plik:
-        json.dump(numbers_list, plik)
+    if filename == '':
+        with open(f'numbers_book.json', 'w') as plik:
+            json.dump(numbers_list, plik)
+    else:
+        with open(f'{filename}.json', 'w') as plik:
+            json.dump(numbers_list, plik)
 
 
 def read_entry_list():
@@ -13,7 +17,7 @@ def read_entry_list():
     if file_exists:
         with open('numbers_book.json') as plik:
             numbers_list = json.load(plik)
-            print(f'There was {len(numbers_list)} read from file.')
+            print(f'There was {len(numbers_list)} records in file.')
     else:
         print(f'No such a file/directory "numbers_book.json.')
         numbers_list = []
