@@ -19,14 +19,21 @@
 #  Jeśli Użytkownik nie wpisał poprawnej liczby całkowitej jako numer,
 #  program ma poinformować Użytkownika o tym fakcie i nie dodawać niczego do listy,
 #  ale nie przerywać pracy całego programu.
-
-
 import json
+
+numbers_list = []
 
 
 def save(numbers_list):
     with open('numbers_book.json', 'w') as plik:
         json.dump(numbers_list, plik)
+    read_entry_list()
+
+
+def read_entry_list():
+    f = open('numbers_book.json')
+    data = json.load(f)
+    print(data)
 
 
 def dict_import(lista):
@@ -47,24 +54,31 @@ def dict_import(lista):
     return
 
 
-numbers_list = []
-entry = {'name': 'Adam', 'number': 601001554}
-numbers_list.append(entry)
-save(numbers_list)
-dict_import(numbers_list)
+def first_part():
+    entry = {'name': 'Adam', 'number': 601001554}
+    numbers_list.append(entry)
+    save(numbers_list)
+    dict_import(numbers_list)
+    return
 
 
+def main():
+    first_part()
+
+
+if __name__ == "__main__":
+    main()
 
 # Etap 3:
 # Stwórz funkcję wczytaj_liste_wpisow, która nie przyjmuje żadnego argumentu.
 # Funkcja ta ma wczytać zawartość pliku ksiazka_numerow.json jako Pythonowy obiekt
 # (należy użyć funkcji json.load())
-#         Funkcja ma ZWRÓCIĆ wczytany obiekt.
-#     Zastosuj wyrażenie if __name__ == '__main__' do oddzielenia wykonywanego kodu od definicji funkcji.
-#     Przepisz program tak, aby używając zadeklarowanych funkcji program wykonał kolejne działania:
-#         wczytał zapisane dane z ksiazka_numerow.json
-#         wczytał z klawiatury dane do nowego wpisu.
-#         zapisał dane z powrotem do ksiazka_numerow.json lub pod inną nazwą podaną przez użytkownika
+# Funkcja ma ZWRÓCIĆ wczytany obiekt.
+# Zastosuj wyrażenie if __name__ == '__main__' do oddzielenia wykonywanego kodu od definicji funkcji.
+# Przepisz program tak, aby używając zadeklarowanych funkcji program wykonał kolejne działania:
+#   wczytał zapisane dane z ksiazka_numerow.json
+#   wczytał z klawiatury dane do nowego wpisu.
+#   zapisał dane z powrotem do ksiazka_numerow.json lub pod inną nazwą podaną przez użytkownika
 #
 # Rozszerzenie 1:
 #
