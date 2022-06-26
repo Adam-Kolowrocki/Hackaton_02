@@ -55,11 +55,15 @@ def round_play():
             print(f'You have {round_counter} tries left.')
             continue
         else:
-            while hang_word.find(user_letter) >= 0:
-                idx = hang_word.find(user_letter)
-                hidden_word = hidden_word.replace('_', user_letter, idx)
-                print(f'Previously used letters ar: {user_letters}')
-                break
+            for i in range(0, len(hang_word)):
+                while hang_word.find(user_letter) > 0:
+                    print(f'wynik find = {hang_word.find(user_letter)}')
+                    i = hang_word.find(user_letter)
+                    hidden_word = hidden_word[0: i] + user_letter + hidden_word[i + 1 :]
+                    print(hidden_word)
+                    hang_word = hang_word[0: i] + '_' + hang_word[i + 1 :]
+                    print(hang_word)
+                    print(f'Previously used letters ar: {user_letters}')
         print(hidden_word)
 
 
