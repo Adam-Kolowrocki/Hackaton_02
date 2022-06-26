@@ -9,8 +9,8 @@
 # Rozszerzenie
 # Wykorzystaj moduł turtle, by narysować wisielca.
 
-import colorsys
 from random import choice
+from colorama import Fore
 random_words = ['proletariat', 'marm', 'bike', 'motorbike', 'tower', 'microphone', 'elevation', 'drop', 'perturbations']
 jobs = ['prestidigitator', 'surgeon', 'anesthesiologist', 'bricklayer', 'roofer', 'mainer', 'metallurgist']
 countries = ['libya', 'australia', 'brazil', 'kazakhstan', 'mauritania', 'tanzania', 'turkey', 'thailand']
@@ -161,7 +161,7 @@ def comp_choice(category):
 
 def end_congratulation():
     print(clear)
-    print(fireworks)
+    print(Fore.GREEN + fireworks)
     print(f' Congratulation, You have won the game !!!')
     input(f'Press ENTER to go back to manu...')
     menu()
@@ -169,7 +169,7 @@ def end_congratulation():
 
 
 def end_game_over(control_word):
-    print(final_hangman)
+    print(Fore.RED + final_hangman)
     print(f'You Lost and You have been hanged!!!')
     print(f'The word You were looking for was: "{control_word}".')
     input(f'Press ENTER to continue...')

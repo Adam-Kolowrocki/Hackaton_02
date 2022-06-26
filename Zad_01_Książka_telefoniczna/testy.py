@@ -1,3 +1,4 @@
+from colorama import Fore
 base_string = 'trestidigitator'
 print(base_string)
 hidden_string = '_______________'
@@ -14,3 +15,6 @@ for i in range(0, len(base_string)):
         print(hidden_string)
         base_string = base_string[: i] + '*' + base_string[i + 1:]
         print(base_string)
+
+
+print(Fore.RED + 'Testowy Text')
