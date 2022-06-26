@@ -53,21 +53,20 @@ def comp_choice():
     return random_word
 
 
-def user_type():
+def user_type(hang_word, hidden_word):
+    control_word = hang_word
     print(clear)
-    hidden_word = game_start()
     while round_counter > 0:
-        # print(hidden_word)
+        print(hidden_word.center(50))
+        print()
         print(f'You have {round_counter} tries left to find the word.')
         print(f'Till now You tried letters -- {user_letters} --')
         user_letter = input(f'Type a letter or guess the word -> ')
         user_letter = user_letter.upper()
         if len(user_letter) > 1:
-            print(f'.........idę w word_check.....')
-            word_check(user_letter)
-            return
+            word_check(user_letter, control_word, round_counter)
         else:
-            check_previous(user_letter)
+            check_previous(user_letter, user_letters, hang_word, hidden_word)
     hanged()
 
 
@@ -79,53 +78,52 @@ def hanged():
 def end_congratulation():
     print(fireworks)
     print(f' Congratulation, You have won the game in {13 - round_counter} round !!!')
+    input(f'Press ENTER to go back to MENU.')
+    menu()
+    return
 
 
-def word_check(user_letter):
-    control_word = game_start()
-    print(f'............jestem w word_check..........')
-    print(control_word)
-    print(user_letter)
+def word_check(user_letter, control_word, round_counter):
     if user_letter == control_word:
         end_congratulation()
+        return
     else:
         round_counter -= 1
         print(f' This is not that word...')
         print(f'Try again...')
         print(f'You have {round_counter} tries left.')
-        user_type()
+        return
 
 
-def check_previous(user_letter):
+def check_previous(user_letter, user_letters, hang_word, hidden_word):
     if user_letters.find(user_letter) > 0:
         print(f"You have already try this letter. Can't do dhis again.")
         print(f'Previously used letters ar: {user_letters}')
         print(f'You still have {round_counter} tries left.')
-        user_type()
+        user_type(hang_word)
     else:
         user_letters += user_letter
-        hangman_chech(user_letter)
+        print(f'Dodałem user_letter do user_letters')  # to trzeba usunąć
+        hangman_check(user_letter, hang_word, hidden_word)
 
 
-def hangman_check(user_letter):
-    hang_word = game_start()
+
+def hangman_check(user_letter, hang_word, hidden_word):
     if hang_word.find(user_letter) == -1:
-        not_in_word(user_letter)
+        not_in_word(user_letter, round_counter, hang_word, hidden_word)
     else:
-        in_word(user_letter)
+        in_word(user_letter, hang_word, hidden_word)
 
 
-def not_in_word(user_letter):
+def not_in_word(user_letter, round_counter, hang_word, hidden_word):
     print(f'Letter "{user_letter}" is not in HANGMAN word...')
     round_counter -= 1
     print(f'You have {round_counter} tries left.')
     print(f'Previously used letters ar: {user_letters}')
-    user_type()
+    user_type(hang_word, hidden_word)
 
 
-def in_word(user_letter):
-    hang_word = game_start()
-    hidden_word = game_start()
+def in_word(user_letter, hang_word, hidden_word):
     for i in range(0, len(hang_word)):
         while hang_word.find(user_letter) > -1:
             i = hang_word.find(user_letter)
@@ -137,21 +135,19 @@ def in_word(user_letter):
 def game_start():
     print(clear)
     hang_word = comp_choice()
-    control_word = comp_choice()
+    print(initial_hangman)
+    print()
+    print(f'You have 12 chances to win or hang !!!')
     print(f'Word for You is {len(hang_word)} letters long.')
     hidden_word = '_' * len(hang_word)
-    print(hidden_word)
-    print(hang_word)
-    print(f'You have 12 chances to win or hang !!!')
-    print(initial_hangman)
+    print()
+    print(hidden_word.center(50))
+    print(f'To trzeba będzie usunąć  --  {hang_word}')  # to jest do usunięcia
     input(f'Press ENTER to continue...')
-    user_type()
-    return hang_word, control_word, hidden_word
+    user_type(hang_word, hidden_word)
 
 
 def menu():
-    print(clear)
-    print(f'Wellcome HANGMAN')
     print(f'Do You want to hang ??')
     user_choice = input(f'Y/N ->')
     if user_choice.lower() == 'n':
@@ -160,12 +156,16 @@ def menu():
         return
     elif user_choice.lower() == 'y':
         game_start()
+        return
     else:
         print(clear)
         menu()
+        return
 
 
 def main():
+    print(clear)
+    print(f'Wellcome HANGMAN')
     menu()
 
 
