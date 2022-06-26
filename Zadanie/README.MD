@@ -1,19 +1,13 @@
-This is my Second hacaton task.
+This is my Second hackaton task.
 
 My project is to write a script to play "Hangman" game.
 Used functions to make the code as clear as possible.
-I had made a list of words and module random/choice to choose one for player.
+I had made three lists of words in, user can choose a category, the module random/choice pick a word for player.
+Program is asking player for a letter or whole word if he knows it, check if the word given by player
+is equal with chosen word - if so - player wins, if not - game is going on.
+If player gives a letter, program checks if it was given before, if it in the chosen word and returns
+info and prints parts of hangman if it is needed.
+If player guess the word before 12 round, he wins...
+If not... he HANGS...
 
 
-
-
-# Zadanie 03 - wisielec
-# Etap 1:
-#  Gracz powinien mieć listę wykorzystanych liter na widoku
-#  i jeśli dana litera jest wykorzystana, nie powinien móc jej użyć ponownie.
-# Etap 2:
-#  Niech pojawi się tytułowy wisielec (hints).
-# Etap 3:
-#  Jeśli użytkownik przegra, pokoloruj wisielca na czerwono za pomocą modułu, np. import color.
-# Rozszerzenie
-# Wykorzystaj moduł turtle, by narysować wisielca.

@@ -1,4 +1,5 @@
 from colorama import Fore
+import turtle
 base_string = 'trestidigitator'
 print(base_string)
 hidden_string = '_______________'
